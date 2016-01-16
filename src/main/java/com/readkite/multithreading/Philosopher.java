@@ -26,7 +26,8 @@ public class Philosopher {
         waitTime += System.currentTimeMillis() - startWait;
         System.out.println("[Philosopher " + position + "] is eating");
         try {
-            Thread.sleep(10/*rnd.nextInt(RANGE)*/);
+            //set 10 to increase probability of deadlock
+            Thread.sleep(rnd.nextInt(RANGE));
         } catch (InterruptedException e) { e.printStackTrace(); }
         eatCount++;
         System.out.println("[Philosopher " + position + "] has finished eating");
@@ -35,7 +36,8 @@ public class Philosopher {
     public void think() {
         System.out.println("[Philosopher " + position + "] is thinking");
         try {
-            Thread.sleep(10/*rnd.nextInt(RANGE)*/);
+            //set 10 to increase probability of deadlock
+            Thread.sleep(rnd.nextInt(RANGE));
         } catch (InterruptedException e) { e.printStackTrace(); }
         System.out.println("[Philosopher " + position + "] is hungry");
         startWait = System.currentTimeMillis();
