@@ -17,9 +17,24 @@ public class MyPhilosopher extends Philosopher implements Runnable {
     public void run() {
         boolean waitTooLong = false;
         while(!stopFlag) {
-            think();
+
+            if(!waitTooLong)
+                think();
+            else  {
+                waitTooLong = false;
+                sleepRandom(1000);
+            }
+
+            Equalizer.setWait(waitTime, position);
+
+            if(Equalizer.needSleep(position)) {
+                System.out.println("[Philosopher " + position + "] is too greedy, he need to share with others");
+                sleepRandom(700);
+            }
+
+
             left.lock.lock();
-                System.out.println("[Philosopher " + position + "] took left fork");
+            System.out.println("[Philosopher " + position + "] took left fork");
             try {
                 //figure out with InterruptedException
                 if(right.lock.tryLock(10, TimeUnit.SECONDS)) {
@@ -38,12 +53,7 @@ public class MyPhilosopher extends Philosopher implements Runnable {
 
             if(!waitTooLong)
                 left.lock.unlock();
-            else  {
-                waitTooLong = false;
-                try {
-                    Thread.sleep( new Random().nextInt(1000));
-                } catch (InterruptedException e) { e.printStackTrace(); }
-            }
+
         }
         System.out.println("[Philosopher " + position + "] has finished");
     }
@@ -56,5 +66,13 @@ public class MyPhilosopher extends Philosopher implements Runnable {
         this.stopFlag = stopFlag;
     }
 
+
+    private void sleepRandom(int range) {
+        try {
+            Thread.sleep(new Random().nextInt(range));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
