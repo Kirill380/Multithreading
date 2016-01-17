@@ -1,4 +1,4 @@
-package com.readkite.multithreading;
+package com.redkite.multithreading;
 
 import static java.lang.System.out;
 

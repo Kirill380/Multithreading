@@ -1,4 +1,4 @@
-package com.readkite.multithreading;
+package com.redkite.multithreading;
 
 
 public class MyPhilosopher extends Philosopher implements Runnable {
