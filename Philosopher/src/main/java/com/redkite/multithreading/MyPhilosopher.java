@@ -26,7 +26,6 @@ public class MyPhilosopher extends Philosopher implements Runnable {
             }
 
             Equalizer.setWait(waitTime, position);
-
             if(Equalizer.needSleep(position)) {
                 System.out.println("[Philosopher " + position + "] is too greedy, he need to share with others");
                 sleepRandom(700);

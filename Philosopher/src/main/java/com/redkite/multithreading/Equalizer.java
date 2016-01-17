@@ -1,8 +1,6 @@
-package com.readkite.multithreading;
+package com.redkite.multithreading;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 /**
  * Created by kyli0415 on 1/16/2016.
