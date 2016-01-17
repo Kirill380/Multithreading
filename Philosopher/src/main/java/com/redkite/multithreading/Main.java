@@ -5,7 +5,11 @@ import static java.lang.System.out;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        int count = args.length > 1 ? Integer.parseInt(args[1]) : 2;
+
+        //set default value of count 2 to increase probability of deadlock
+        int count = args.length > 0 ? Integer.parseInt(args[0]) : 5;
+        int simulationTime = args.length > 1 ? Integer.parseInt(args[1]) : 60 * 1000;
+
         MyPhilosopher[] philosophers = new MyPhilosopher[count];
         Thread[] threads =  new Thread[count];
 
@@ -25,7 +29,7 @@ public class Main {
         }
 
 
-        Thread.sleep(5*60*1000);
+        Thread.sleep(simulationTime);
 
         for (MyPhilosopher philosopher : philosophers) {
             philosopher.setStopFlag(true);
