@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" packages="">
+    <Appenders>
+        <File name="ErrorFile" fileName="logs/error.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="LinksFile" fileName="logs/links.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%highlight{%d %p %m%n}{ERROR=red, WARN=yellow, INFO=black, DEBUG=blue}</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="links" level="info">
+            <AppenderRef ref="LinksFile"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="ErrorFile" level="error"/>
+            <AppenderRef ref="STDOUT" level="DEBUG"/>
+        </Root>
+    </Loggers>
+</Configuration>
